@@ -5,7 +5,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 //views 
-import  Home from "./App.vue";
 import Register from "./components/login/register/register.vue";
 import HomeLogin from "./components/login/login/login.vue";
 import Shop from "./components/shop/shopComponent.vue";
