@@ -4,19 +4,13 @@
     ////////////
 -->
 
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-const count = ref(0);
-</script>
 
 <template>
     <div class="min-h-screen w-fill bg-gray-200 flex items-center justify-center">
 
-        <div class="px-12 py-10 bg-gray-300 rounded-xl space-y-4 hover:border-2 hover:border-blue-400">
+        <div class="px-12 py-10 bg-gray-300 rounded-xl space-y-4 hover:border-2 hover:border-blue-400 max-w-2xl">
 
-            <form class="space-y-4 ">
+            <form class="space-y-4 "  @submit.prevent="registerUser">
                 <div class="mb-6">
                     <h1 class="text-2xl font-bold text-blue-800">Registro de cuentas</h1>
                 </div>
@@ -35,7 +29,26 @@ const count = ref(0);
                                 </svg>
                             </span>
                         </div>
-                        <input type="text" required name="name" id="name" placeholder="Nombre"
+                        <input type="text" v-model="name" required name="name" id="name" placeholder="Nombre"
+                            class="block w-full rounded-md border-0 py-1.5 pl-10 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                 <!-- mail -->
+                 <div>
+                    <label for="mail" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
+                            <span class="text-gray-500 sm:text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+
+                            </span>
+                        </div>
+                        <input v-model="mail" type="mail" required name="name" id="name" placeholder="Email"
                             class="block w-full rounded-md border-0 py-1.5 pl-10 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -53,53 +66,62 @@ const count = ref(0);
                                 </svg>
                             </span>
                         </div>
-                        <input type="password" name="name" id="name"
+                        <input v-model="password" type="password" name="name" id="name"
                             class="block w-full rounded-md border-0 py-1.5 pl-10 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
 
-                <!-- mail -->
-                <div>
-                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
-                    <div class="relative mt-2 rounded-md shadow-sm">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
-                            <span class="text-gray-500 sm:text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                                </svg>
-
-                            </span>
-                        </div>
-                        <input type="mail" required name="name" id="name" placeholder="Email"
-                            class="block w-full rounded-md border-0 py-1.5 pl-10 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
+               
 
                 <!-- submit -->
                 <div>
                     <input type="submit"
                         class="bg-blue-800 w-full py-1 rounded font-bold text-white mt-2  hover:cursor-pointer"
-                        value="Ingresar">
+                        value="Registrar">
                 </div>
             </form>
 
 
             <!-- button -->
             <div class="flex flex-col">
-                <a class="bg-white w-full py-1 rounded font-bold text-blue-800 mt-2 text-center  hover:cursor-pointer">
-                    Registrate</a>
-                <a
-                    class="w-full py-1 rounded text-black mt-2 text-center text-sm  hover:cursor-pointer hover:text-blue-800 hover:font-bold">
-                    Recuperar contraseña...</a>
+                
+                <router-link
+                    to='/'
+                    class="bg-white w-full py-1 rounded font-bold text-blue-800 mt-2 text-center  hover:cursor-pointer"
+                >
+                Iniciar Sesion
+                </router-link>
             </div>
 
         </div>
 
     </div>
 </template>
+
+
+<script setup lang="ts">
+    import userModel from '../../state/users'
+    import { ref } from 'vue'
+
+    const mail = ref('');
+    const name = ref('');
+    const password = ref('');
+
+    const registerUser = () => {
+
+        const newUser : userModel = {
+            name : name.value,
+            mail : mail.value,
+            password : password.value
+        }
+        userModel.push(newUser);    
+        console.log(userModel)
+        alert('Usuario creado correctamente');
+        return
+    }
+</script>
+
 
 
 <style scoped></style>

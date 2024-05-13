@@ -4,23 +4,19 @@
     ////////////
 -->
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
-defineProps<{ msg: string }>()
-const count = ref(0);
-</script>
+
 
 <template>
     <div class="min-h-screen w-fill bg-gray-200 flex items-center justify-center">
 
         <div class="px-12 py-10 bg-gray-300 rounded-xl space-y-4 hover:border-2 hover:border-blue-400">
 
-            <form class="space-y-4 ">
+            <form class="space-y-4" @submit.prevent="iniciarSesion">
                 <div class="mb-6">
                     <h1 class="text-2xl font-bold text-blue-800">Inicio de Sesión</h1>
                 </div>
-
+                
                 <!-- Name -->
                 <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nombre de
@@ -35,14 +31,14 @@ const count = ref(0);
                                 </svg>
                             </span>
                         </div>
-                        <input type="text" name="name" id="name" placeholder="Nombre"
+                        <input v-model="mail" required type="mail" name="name" id="name" placeholder="Email"
                             class="block w-full rounded-md border-0 py-1.5 pl-10 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <!-- Password -->
                 <div>
-                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+                    <label  for="name" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
                             <span class="text-gray-500 sm:text-sm">
@@ -53,7 +49,7 @@ const count = ref(0);
                                 </svg>
                             </span>
                         </div>
-                        <input type="password" name="name" id="name"
+                        <input  v-model="password" required type="password" name="name" id="name"
                             class="block w-full rounded-md border-0 py-1.5 pl-10 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -68,14 +64,40 @@ const count = ref(0);
 
             <!-- button -->
             <div class="flex flex-col">
-                <a class="bg-white w-full py-1 rounded font-bold text-blue-800 mt-2 text-center  hover:cursor-pointer"> Registrate</a>
-                <a class="w-full py-1 rounded text-black mt-2 text-center text-sm  hover:cursor-pointer hover:text-blue-800 hover:font-bold"> Recuperar contraseña...</a>
-            </div>
+                <router-link to="/register" class="bg-white w-full py-1 rounded font-bold text-blue-800 mt-2 text-center  hover:cursor-pointer"> 
+                    Registrate
+                </router-link> 
 
+             </div>
         </div>
 
     </div>
 </template>
+
+
+<script setup lang="ts">
+    import userModel from '../../state/users'
+    import { ref } from 'vue'
+    import { useRouter } from 'vue-router'
+
+    const router = useRouter();
+    const mail = ref('');
+    const password = ref('');
+
+    const iniciarSesion = () => {
+        for (const usuarioModel of userModel){
+            if(usuarioModel.mail === mail.value && usuarioModel.password == password.value){
+                alert("Inicio de sesión exitoso.");
+                router.push({ path: '/shop' });
+                return;
+            }
+           
+        }
+
+        alert('Credenciales incorrectas');
+        return
+    }
+</script>
 
 
 <style scoped></style>
