@@ -60,9 +60,9 @@
 
     //functions
 
-    const viewBuyCar = (itemBuy : ItemsCarBuyModel) => {
+    const viewBuyCar = (itemBuy : any) => {
 
-        const newItemCarBuy : ItemsCarBuyModel = {
+        const newItemCarBuy = {
             id : itemBuy.id,
             name : itemBuy.name,
             price : itemBuy.price,
