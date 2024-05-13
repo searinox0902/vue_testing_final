@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 interface Item {
     id: string
@@ -9,9 +9,9 @@ interface Item {
 }
 
 const newShortUUID = (): string => {
-    const uuid = uuidv4();
+    const Uuid = uuidv4();
     // Tomar solo la primera parte del UUID
-    const uuidCorto = uuid.split('-')[0];
+    const uuidCorto = Uuid.split('-')[0];
     return uuidCorto;
   };
 

@@ -13,9 +13,11 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.8",
     "@vitejs/plugin-vue": "^5.0.4",
     "typescript": "^5.2.2",
     "uuid": "^9.0.1",
+    "uuidv4": "^6.2.13",
     "vite": "^5.2.0",
     "vue-tsc": "^2.0.6"
   }
