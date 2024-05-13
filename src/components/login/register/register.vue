@@ -110,7 +110,7 @@
 
     const registerUser = () => {
 
-        const newUser : userModel = {
+        const newUser = {
             name : name.value,
             mail : mail.value,
             password : password.value

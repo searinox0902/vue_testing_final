@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Login from './components/login/login/login.vue'
-import { createRouter } from 'vue-router'
 </script>
 
 
