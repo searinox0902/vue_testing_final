@@ -11,7 +11,7 @@ import Shop from "./components/shop/shopComponent.vue";
 import BuyCar from "./components/carbuy/carbuy.vue";
 
 const router =  createRouter({
-    history: createWebHistory(),
+    history: createWebHistory('#'),
     routes: [
         {
             path : '/',
